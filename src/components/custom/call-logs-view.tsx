@@ -462,7 +462,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                                 />
                               </Button>
                             </DialogTrigger>
-                          <DialogContent className="max-w-5xl h-[65vh] p-6 overflow-hidden">
+                          <DialogContent className="max-w-5xl h-[55vh] p-6 overflow-hidden">
                           <DialogHeader className="pb-4">
                             <div className="flex items-center justify-between w-full py-2 border-b">
                               <div className="flex items-center gap-4">
@@ -538,13 +538,13 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                             </div>
                         
                             <div className="flex flex-col gap-1 h-full">
-  <div className="h-1/3">
+  <div className="flex-1 min-h-0">
     <PowerMomentSection />
   </div>
-  <div className="h-1/3">
+  <div className="flex-1 min-h-0">
     <CallNotesWidget log={log} />
   </div>
-  <div className="h-1/3">
+  <div className="flex-1 min-h-0">
     <LevelUpPlanWidget>
       <AreasOfImprovement currentIndex={0} />
     </LevelUpPlanWidget>
