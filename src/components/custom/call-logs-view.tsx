@@ -84,7 +84,7 @@ const callLogsData: CallLogData[] = [
     programExplanation: 87,
     closingSkills: 86,
     overallEffectiveness: 88,
-    notes: "Customer showed interest in our premium package. Follow up next week to discuss financing options.",
+    notes: "Customer showed interest in our premium package. Follow up next week to discuss financing options.Customer showed interest in our premium package. Follow up next week to discuss financing options.",
     callerImage: "https://res.cloudinary.com/drkudvyog/image/upload/v1734301718/a-3d-cartoon-style-profile-image-of-david-a-40-yea-vzj8l6oUQwqDyV_BtWc0Eg-n9lLI1SAQfuxxvzy48S83Q_yy9urr.png"
   },
   {
@@ -928,7 +928,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '405px' }}>
+    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '412px' }}>
       <div className="p-4 h-full overflow-y-auto">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "metrics" | "transcript")} className="w-full h-full flex flex-col">
           <TabsList className="grid w-full grid-cols-2 mb-4">
@@ -969,7 +969,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
               </div>
             )}
           </TabsContent>
-          <TabsContent value="transcript" className="h-[322px] overflow-hidden">
+          <TabsContent value="transcript" className="h-[325px] overflow-hidden">
           <TranscriptView className="h-full" messages={[
   {
     speaker: "Megan",
