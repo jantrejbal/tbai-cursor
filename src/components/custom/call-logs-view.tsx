@@ -533,9 +533,9 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                           </DialogHeader>
                                                   
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100%-80px)]">
-                            <div className="h-full">
-                              <PerformanceMetricsWidget log={log} />
-                            </div>
+  <div style={{ height: 'calc(100% - 40px)' }}>
+    <PerformanceMetricsWidget log={log} />
+  </div>
                         
                             <div className="flex flex-col gap-1" style={{ height: 'calc(100% - 20px)' }}>
   <div style={{ height: '120px' }}>
@@ -969,7 +969,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
               </div>
             )}
           </TabsContent>
-          <TabsContent value="transcript" className="h-[250px] overflow-hidden">
+          <TabsContent value="transcript" className="h-[300px] overflow-hidden">
           <TranscriptView className="h-full" messages={[
   {
     speaker: "Megan",
