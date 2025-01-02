@@ -23,7 +23,9 @@ export function RatingsView({ data }: { data: RatingsData[] }) {
   const visibleData = showMore ? filteredData : filteredData.slice(0, 5)
 
   return (
-    <div>
+    <div className="flex flex-col w-full h-full p-0 gap-4">  
+      <ActivityView />
+      <CallLogsView data={data} />
     </div>
   )
 }
