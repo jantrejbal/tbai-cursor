@@ -462,7 +462,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                                 />
                               </Button>
                             </DialogTrigger>
-                          <DialogContent className="max-w-5xl h-[50vh] p-6 overflow-hidden">
+                          <DialogContent className="max-w-5xl h-[53vh] p-6 overflow-hidden">
                           <DialogHeader className="pb-4">
                             <div className="flex items-center justify-between w-full py-2 border-b">
                               <div className="flex items-center gap-4">
