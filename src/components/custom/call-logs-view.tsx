@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react"
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import { PowerMomentWidget } from "@/components/custom/power-moment-widget"
 import { Button } from "@/components/ui/button"
-import { Card, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
 import { Play, Pause, Pencil, BarChart2, Check, X, ArrowLeft, ChevronLeft, ChevronRight, Zap } from 'lucide-react'
 import { formatDateShort } from '@/utils/formatters'
 import {
@@ -533,6 +533,11 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                           </DialogHeader>
                                                   
                           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100%-80px)]">
+                            <div className="h-full">
+                              <PerformanceMetricsWidget log={log} />
+                            </div>
+                        
+                            <div className="flex flex-col gap-1" style={{ height: 'calc(100% - 20px)' }}>
   <div style={{ height: '120px' }}>
     <PowerMomentSection />
   </div>
@@ -964,7 +969,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
               </div>
             )}
           </TabsContent>
-          <TabsContent value="transcript" className="h-[300px] overflow-hidden">
+          <TabsContent value="transcript" className="h-[250px] overflow-hidden">
           <TranscriptView className="h-full" messages={[
   {
     speaker: "Megan",
