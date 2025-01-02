@@ -969,8 +969,8 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
               </div>
             )}
           </TabsContent>
-          <TabsContent value="transcript" className="flex-grow overflow-hidden">
-            <TranscriptView className="h-full overflow-hidden" messages={[
+          <TabsContent value="transcript" className="h-[300px] overflow-hidden">
+          <TranscriptView className="h-full" messages={[
   {
     speaker: "Megan",
     avatar: "M",
