@@ -537,14 +537,14 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                               <PerformanceMetricsWidget log={log} />
                             </div>
                         
-                            <div className="flex flex-col gap-1">
-  <div className="h-[28%]">
+                            <div className="flex flex-col gap-1" style={{ height: 'calc(100% - 20px)' }}>
+  <div style={{ height: '120px' }}>
     <PowerMomentSection />
   </div>
-  <div className="h-[28%]">
+  <div style={{ height: '120px' }}>
     <CallNotesWidget log={log} />
   </div>
-  <div className="h-[28%]">
+  <div style={{ height: '120px' }}>
     <LevelUpPlanWidget>
       <AreasOfImprovement currentIndex={0} />
     </LevelUpPlanWidget>
