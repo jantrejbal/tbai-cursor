@@ -544,7 +544,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
   <div style={{ height: '120px' }}>
     <CallNotesWidget log={log} />
   </div>
-  <div style={{ height: '120px' }}>
+  <div style={{ height: '150px' }}>
     <LevelUpPlanWidget>
       <AreasOfImprovement currentIndex={0} />
     </LevelUpPlanWidget>
