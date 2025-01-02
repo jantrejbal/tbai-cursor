@@ -928,7 +928,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col h-[calc(80vh-160px)]">
+    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col h-full">
       <div className="p-4 h-full overflow-y-auto">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "metrics" | "transcript")} className="w-full h-full flex flex-col">
           <TabsList className="grid w-full grid-cols-2 mb-4">
@@ -1080,6 +1080,7 @@ export function TranscriptView({ messages, className, agentName }: TranscriptVie
   return (
     <div className={cn("h-full flex flex-col min-h-0", className)}>
       <h2 className="text-xl font-semibold mb-4">Call Transcript</h2>
+      <div className="h-[300px] overflow-y-auto pr-4 space-y-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
       <div className="flex-grow overflow-y-auto pr-4 space-y-4 min-h-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
         {messages.map((message, index) => (
           <div
