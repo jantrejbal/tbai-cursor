@@ -171,7 +171,7 @@ const callLogsData: CallLogData[] = [
 
 function PowerMomentSection() {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 h-full flex flex-col"> {/* Přidáno flex flex-col */}
+    <div className="bg-white rounded-xl shadow-md p-4 h-full flex flex-col">
       <div className="flex items-center gap-2 mb-3">
         <Zap className="h-5 w-5 text-[#f8b922]" />
         <h2 className="text-lg font-semibold">Power Moment!</h2>
@@ -538,19 +538,16 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                             </div>
                         
                             <div className="flex flex-col gap-6 h-full">
-                              <div className="flex gap-6 h-[55%]">
-                                <div className="flex-1 h-full">
-                                  <CallNotesWidget log={log} />
-                                </div>
-                                <div className="w-64 h-full">
-                                  <PowerMomentSection />
-                                </div>
-                              </div>
-                              
-                              <div className="h-[45%]">
-                                <LevelUpPlanWidget />
-                              </div>
-                            </div>
+  <div className="h-1/3">
+    <PowerMomentSection />
+  </div>
+  <div className="h-1/3">
+    <CallNotesWidget log={log} />
+  </div>
+  <div className="h-1/3">
+    <LevelUpPlanWidget />
+  </div>
+</div>
                           </div>
                         </DialogContent>
                         </Dialog>
