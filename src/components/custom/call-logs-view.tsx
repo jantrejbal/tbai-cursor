@@ -841,7 +841,7 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
   };
 
   return (
-    <div className="flex-1 bg-white rounded-md p-4 pt-2 shadow-md shadow-black/20 relative">
+    <div className="flex-1 bg-white rounded-md p-4 pt-2 shadow-md shadow-black/20 relative h-full overflow-hidden flex flex-col">
       <div className="flex justify-between items-start mb-2">
         {isEditing ? (
           <input
@@ -865,18 +865,19 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
           {isEditing ?'Save' : 'Edit'}
         </Button>
       </div>
-      {isEditing ? (
-        <textarea
-          defaultValue={currentArea.description}
-          className="w-full text-sm text-gray-600 bg-transparent border rounded-md p-2 focus:outline-none focus:border-purple-800"
-          onBlur={(e) => handleSave(currentArea.area, e.target.value)}
-        />
-      ) : (
-        <p className="text-sm text-gray-600 max-h-[100px] overflow-y-auto pr-2">{currentArea.description}</p>
-      )}
+      <div className="flex-1 overflow-y-auto">
+        {isEditing ? (
+          <textarea
+            defaultValue={currentArea.description}
+            className="w-full text-sm text-gray-600 bg-transparent border rounded-md p-2 focus:outline-none focus:border-purple-800"
+            onBlur={(e) => handleSave(currentArea.area, e.target.value)}
+          />
+        ) : (
+          <p className="text-sm text-gray-600 pr-2">{currentArea.description}</p>
+        )}
+      </div>
     </div>
   );
-}
 
 
 function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
