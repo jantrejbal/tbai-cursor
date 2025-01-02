@@ -1016,8 +1016,8 @@ function CallNotesWidget({ log }: { log: CallLogData }) {
         />
         Call Notes
       </h2>
-      <div className="flex-grow overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
-        <p className="text-sm text-gray-600">
+      <div className="flex-grow max-h-[72px] overflow-y-auto pr-2 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
+        <p className="text-sm text-gray-600 leading-6">
           {log.notes}
         </p>
       </div>
