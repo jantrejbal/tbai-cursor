@@ -537,7 +537,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                               <PerformanceMetricsWidget log={log} />
                             </div>
                         
-                            <div className="flex flex-col gap-6 h-full">
+                            <div className="flex flex-col gap-2 h-full">
   <div className="h-1/3">
     <PowerMomentSection />
   </div>
@@ -545,7 +545,9 @@ export function CallLogsView({ data }: CallLogsViewProps) {
     <CallNotesWidget log={log} />
   </div>
   <div className="h-1/3">
-    <LevelUpPlanWidget />
+    <LevelUpPlanWidget>
+      <AreasOfImprovement currentIndex={currentIndex} />
+    </LevelUpPlanWidget>
   </div>
 </div>
                           </div>
@@ -1023,7 +1025,7 @@ function CallNotesWidget({ log }: { log: CallLogData }) {
   );
 }
 
-function LevelUpPlanWidget() {
+function LevelUpPlanWidget({ children }: { children: React.ReactNode }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const totalAreas = 3;
 
