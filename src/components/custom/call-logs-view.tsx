@@ -333,6 +333,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
   min={0}
   max={100}
   step={1}
+  thumbs={2}  // Add this line!
   minStepsBetweenThumbs={1}
   defaultValue={[performanceRange[0], performanceRange[1]]}
   value={[performanceRange[0], performanceRange[1]]}
