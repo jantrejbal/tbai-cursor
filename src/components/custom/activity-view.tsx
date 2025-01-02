@@ -490,7 +490,7 @@ function ActivityView({ data }: ActivityViewProps) {
           </table>
       
           {/* Scrollovatelný div s druhou tabulkou */}
-          <div className="h-[340px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
+          <div className="h-[350px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
             <table className="w-full table-fixed">
               <tbody>
                 {filteredAndSortedData.map((user, index) => (
