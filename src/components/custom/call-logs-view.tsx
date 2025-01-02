@@ -532,25 +532,24 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                             </div>
                           </DialogHeader>
                                                   
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100%-80px)] overflow-auto">
-                            <div className="h-full">
-                              <PerformanceMetricsWidget log={log} />
-                            </div>
-                        
-                            <div className="flex flex-col gap-1 h-full">
-  <div className="flex-1 min-h-0">
-    <PowerMomentSection />
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100%-80px)]">
+  <div className="h-full">
+    <PerformanceMetricsWidget log={log} />
   </div>
-  <div className="flex-1 min-h-0">
-    <CallNotesWidget log={log} />
-  </div>
-  <div className="flex-1 min-h-0">
-    <LevelUpPlanWidget>
-      <AreasOfImprovement currentIndex={0} />
-    </LevelUpPlanWidget>
+  <div className="flex flex-col gap-1 h-full items-stretch">
+    <div className="h-[32%]">
+      <PowerMomentSection />
+    </div>
+    <div className="h-[32%]">
+      <CallNotesWidget log={log} />
+    </div>
+    <div className="h-[32%]">
+      <LevelUpPlanWidget>
+        <AreasOfImprovement currentIndex={0} />
+      </LevelUpPlanWidget>
+    </div>
   </div>
 </div>
-                          </div>
                         </DialogContent>
                         </Dialog>
                       </td>
