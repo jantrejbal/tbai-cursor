@@ -841,7 +841,7 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
   };
 
   return (
-    <div className="flex-1 bg-white rounded-md p-4 pt-2 shadow-md shadow-black/20 relative h-[120px] overflow-hidden flex flex-col">
+    <div className="flex-1 bg-white rounded-md p-4 pt-2 shadow-md shadow-black/20 relative h-full overflow-hidden flex flex-col">
       <div className="flex justify-between items-start mb-2">
         {isEditing ? (
           <input
@@ -865,7 +865,7 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
           {isEditing ?'Save' : 'Edit'}
         </Button>
       </div>
-      <div className="h-[40px] overflow-y-auto">
+      <div className="h-[60px] overflow-y-auto">
         {isEditing ? (
           <textarea
             defaultValue={currentArea.description}
