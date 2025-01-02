@@ -462,7 +462,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                                 />
                               </Button>
                             </DialogTrigger>
-                          <DialogContent className="max-w-5xl h-[65vh] p-6">
+                          <DialogContent className="max-w-5xl h-[65vh] p-6 overflow-hidden">
                           <DialogHeader className="pb-4">
                             <div className="flex items-center justify-between w-full py-2 border-b">
                               <div className="flex items-center gap-4">
@@ -532,7 +532,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                             </div>
                           </DialogHeader>
                                                   
-                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100%-80px)]">
+                          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 h-[calc(100%-80px)] overflow-auto">
                             <div className="h-full">
                               <PerformanceMetricsWidget log={log} />
                             </div>
