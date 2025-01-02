@@ -878,7 +878,7 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
       </div>
     </div>
   );
-
+}
 
 function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   const [selectedMetric, setSelectedMetric] = useState<string>("Overall Score");
@@ -1004,7 +1004,6 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   )
 }
 
-
 function CallNotesWidget({ log }: { log: CallLogData }) {
   return (
     <div className="bg-white rounded-xl shadow-md p-4 h-full flex flex-col">
@@ -1068,7 +1067,7 @@ function LevelUpPlanWidget({ children }: { children: React.ReactNode }) {
 }
 
 interface TranscriptViewProps {
-  messages?: Message[];
+  messages: any[]; // Replace 'any' with your actual message type
   className?: string;
   agentName?: string;
 }
