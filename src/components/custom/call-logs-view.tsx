@@ -546,7 +546,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
   </div>
   <div className="h-1/3">
     <LevelUpPlanWidget>
-      <AreasOfImprovement currentIndex={currentIndex} />
+      <AreasOfImprovement currentIndex={0} />
     </LevelUpPlanWidget>
   </div>
 </div>
