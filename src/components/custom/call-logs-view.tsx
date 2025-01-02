@@ -865,7 +865,7 @@ function AreasOfImprovement({ currentIndex }: { currentIndex: number }) {
           {isEditing ?'Save' : 'Edit'}
         </Button>
       </div>
-      <div className="h-[60px] overflow-y-auto">
+      <div className="h-[45px] overflow-y-auto">
         {isEditing ? (
           <textarea
             defaultValue={currentArea.description}
