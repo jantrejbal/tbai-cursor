@@ -462,7 +462,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                                 />
                               </Button>
                             </DialogTrigger>
-                          <DialogContent className="max-w-5xl h-[55vh] p-6 overflow-hidden">
+                          <DialogContent className="max-w-5xl h-[50vh] p-6 overflow-hidden">
                           <DialogHeader className="pb-4">
                             <div className="flex items-center justify-between w-full py-2 border-b">
                               <div className="flex items-center gap-4">
@@ -928,7 +928,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '410px' }}>
+    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '408px' }}>
       <div className="p-4 h-full overflow-y-auto">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "metrics" | "transcript")} className="w-full h-full flex flex-col">
           <TabsList className="grid w-full grid-cols-2 mb-4">
