@@ -329,7 +329,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                       <span className="text-sm font-medium">Overall Performance Range:</span>
                       <span className="text-sm font-medium text-[#5b06be]">{performanceRange[0]} - {performanceRange[1]}</span>
                     </div>
-                    <Slider
+ <Slider
   min={0}
   max={100}
   step={1}
@@ -389,7 +389,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
               </thead>
             </table>
           
-            <div className="h-[330px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
+            <div className="h-[370px] overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
               <table className="w-full">
                 <tbody>
                   {filteredAndSortedData && filteredAndSortedData.length > 0 ? (
