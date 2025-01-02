@@ -515,7 +515,7 @@ function ActivityView({ data }: ActivityViewProps) {
                         <Button 
   variant="ghost" 
   size="sm"
-  className="rounded-full bg-[#5b06be] text-white hover:bg-[#f8b922] transition-all px-3 py-1 text-xs h-7"
+  className="rounded-full bg-[#5b06be] text-white hover:bg-[#f8b922] hover:text-white transition-all px-3 py-1 text-xs h-7"
 >
   <span className="font-medium">{user.overallPerformance}/100</span>
   <span className="ml-1 font-medium">View Info</span>
@@ -549,7 +549,7 @@ function ActivityView({ data }: ActivityViewProps) {
                       <Button 
                         variant="ghost" 
                         size="sm"
-                        className="rounded-full bg-[#5b06be] text-white hover:bg-[#7016e0] transition-all"
+                        className="rounded-full bg-[#5b06be] text-white hover:bg-[#f8b922] hover:text-white transition-all px-3 py-1 text-xs h-7"
                         onClick={() => handleAddNote(user)}
                       >
                         {notes[user.name] ? 'Edit Note' : 'Add Note'}
