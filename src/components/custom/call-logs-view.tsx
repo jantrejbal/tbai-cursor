@@ -928,7 +928,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '412px' }}>
+    <div className="bg-white shadow-md rounded-xl w-full overflow-hidden flex flex-col" style={{ height: '410px' }}>
       <div className="p-4 h-full overflow-y-auto">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as "metrics" | "transcript")} className="w-full h-full flex flex-col">
           <TabsList className="grid w-full grid-cols-2 mb-4">
