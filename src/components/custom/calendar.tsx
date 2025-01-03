@@ -65,13 +65,15 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDateIter = new Date(year, month, i)
+      const isBeforeToday = currentDateIter < new Date(new Date().setHours(0, 0, 0, 0))
       
       days.push(
         <div 
           key={i} 
-          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-100 rounded-full transition-colors
-            ${isStartOrEndDate(currentDateIter) ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}
-            ${isDateInRange(currentDateIter) ? 'bg-[#5b06be]/20' : ''}`}
+          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-[#5b06be]/10 rounded-full transition-colors
+            ${isStartOrEndDate(currentDateIter) ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]' : ''}
+            ${isDateInRange(currentDateIter) ? 'bg-[#5b06be]/20' : ''}
+            ${isBeforeToday ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(currentDateIter)}
         >
           {i}
@@ -82,14 +84,14 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     return days
   }
 
-  const quickSelectButtons = [
-    { label: "This Week", value: "This Week" },
-    { label: "Last Week", value: "Last Week" },
-    { label: "Last 7 Days", value: "Last 7 Days" },
-    { label: "This Month", value: "This Month" },
-    { label: "Last 14 Days", value: "Last 14 Days" },
-    { label: "Last 30 Days", value: "Last 30 Days" },
-  ]
+  const handleQuickSelect = (daysBack: number) => {
+    const end = new Date();
+    const start = new Date();
+    start.setDate(end.getDate() - daysBack);
+    setStartDate(start);
+    setEndDate(end);
+    onSelectRange(start, end);
+  };
 
   return (
     <Card className="w-full max-w-2xl mx-auto p-0 m-0">
@@ -137,19 +139,34 @@ export function Calendar({ onSelectRange }: CalendarProps) {
           })}
         </div>
         <div className="grid grid-cols-2 gap-2 mt-2">
-          {quickSelectButtons.map((button) => (
-            <Button
-              key={button.value}
-              variant="outline"
-              onClick={() => {
-                // TODO: Implement quick select date ranges
-                // onSelectRange(calculatedStart, calculatedEnd);
-              }}
-              className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
-            >
-              {button.label}
-            </Button>
-          ))}
+          <Button
+            variant="outline"
+            onClick={() => handleQuickSelect(7)}
+            className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
+          >
+            Last 7 Days
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => handleQuickSelect(14)}
+            className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
+          >
+            Last 14 Days
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => handleQuickSelect(30)}
+            className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
+          >
+            Last 30 Days
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => handleQuickSelect(90)}
+            className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
+          >
+            Last 90 Days
+          </Button>
         </div>
       </CardContent>
     </Card>
