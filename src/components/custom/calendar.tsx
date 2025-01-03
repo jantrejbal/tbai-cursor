@@ -51,7 +51,7 @@ export function Calendar({ onSelectRange }: CalendarProps) {
           onClick={() => {
             if (!selectedStartDate) {
               setSelectedStartDate(currentDateIter)
-            } else if (!selectedEndDate) {
+            } else if (!selectedEndDate || currentDateIter < selectedStartDate) {
               setSelectedEndDate(currentDateIter)
               onSelectRange(selectedStartDate, currentDateIter)
             } else {
