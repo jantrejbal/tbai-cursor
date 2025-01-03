@@ -195,14 +195,17 @@ export function CallLogsView({ data }: CallLogsViewProps) {
   const [feedbackText, setFeedbackText] = useState(""); // Added feedbackText state
   const [selectedTimeFrame, setSelectedTimeFrame] = useState("All time"); // Added selectedTimeFrame state
   const [feedbackDialogOpen, setFeedbackDialogOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<{ start: Date | null; end: Date | null }>({
+    start: null,
+    end: null
+  });
 
   const handleSaveFeedback = (name: string, feedback: string) => {
     setFeedbacks(prev => ({ ...prev, [name]: feedback }));
   };
 
-  const handleSelectDateRange = (range: string) => {
-    setSelectedDateRange(range);
-    setSelectedTimeFrame(range); // Update to set both states
+  const handleSelectDateRange = (start: Date | null, end: Date | null) => {
+    setDateRange({ start, end });
     setIsCalendarOpen(false);
   };
 
@@ -226,6 +229,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
   const filteredAndSortedData = useMemo(() => {
     let data = filterData(callLogsData, searchQuery);
     data = data.filter(log => 
+      isDateInRange(log.date) && 
       log.performance >= performanceRange[0] && 
       log.performance <= performanceRange[1]
     );
@@ -243,7 +247,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
           return 0;
       }
     });
-  }, [searchQuery, performanceRange, sortOption, callLogsData]);
+  }, [searchQuery, performanceRange, sortOption, callLogsData, dateRange]);
 
 
   if (!callLogsData || callLogsData.length === 0) {
@@ -283,24 +287,23 @@ export function CallLogsView({ data }: CallLogsViewProps) {
             Team Call Logs
           </CardTitle>
           <div className="flex items-center gap-4">
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
-                onClick={() => setIsCalendarOpen(true)}
-              >
-                <Image
-                  src="https://res.cloudinary.com/drkudvyog/image/upload/v1734437402/calendar_icon_2_efgdme.png"
-                  alt="Calendar"
-                  width={16}
-                  height={16}
-                  className="mr-2"
-                />
-                {selectedDateRange}
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button 
+          <Button 
+  variant="outline" 
+  size="sm"
+  className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
+  onClick={() => setIsCalendarOpen(true)}
+>
+  <Image
+    src="https://res.cloudinary.com/drkudvyog/image/upload/v1734437402/calendar_icon_2_efgdme.png"
+    alt="Calendar"
+    width={16}
+    height={16}
+    className="mr-2"
+  />
+  {dateRange.start && dateRange.end ? (
+    `${formatDateShort(dateRange.start.toISOString())} - ${formatDateShort(dateRange.end.toISOString())}`
+  ) : "All time"}
+</Button>
                     variant="outline" 
                     size="sm"
                     className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
