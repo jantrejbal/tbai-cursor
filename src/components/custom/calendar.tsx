@@ -46,7 +46,7 @@ export function Calendar({ onSelectRange }: CalendarProps) {
       days.push(
         <div 
           key={i} 
-          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-0 rounded-full transition-colors
+          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-100 rounded-full transition-colors
             ${isSelected ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}`}
           onClick={() => setSelectedDate(currentDateIter)}
         >
@@ -69,7 +69,7 @@ export function Calendar({ onSelectRange }: CalendarProps) {
 
   return (
     <Card className="w-full max-w-2xl mx-auto">
-      <CardContent className="p-2">
+      <CardContent className="p-4 rounded-none">
         <Button
           variant="ghost"
           className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
@@ -124,4 +124,3 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     </Card>
   )
 }
-
