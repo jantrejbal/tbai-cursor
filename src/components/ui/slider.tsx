@@ -28,7 +28,11 @@ const Slider = React.forwardRef
       ))}
     </SliderPrimitive.Root>
   );
-})
+}) as React.ForwardRefExoticComponent
+  React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root> & {
+    ref?: React.ForwardedRef<React.ElementRef<typeof SliderPrimitive.Root>>;
+  }
+>;
 
 Slider.displayName = SliderPrimitive.Root.displayName
 
