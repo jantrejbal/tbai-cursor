@@ -11,12 +11,13 @@ const monthNames = [
 ]
 
 interface CalendarProps {
-  onSelectRange: (range: string) => void
+  onSelectRange: (start: Date, end: Date) => void
 }
 
 export function Calendar({ onSelectRange }: CalendarProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date())
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date())
+  const [selectedStartDate, setSelectedStartDate] = React.useState<Date | null>(null)
+  const [selectedEndDate, setSelectedEndDate] = React.useState<Date | null>(null)
 
   const goToPreviousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))
@@ -38,17 +39,30 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDateIter = new Date(year, month, i)
-      const isSelected = selectedDate && 
-        currentDateIter.getDate() === selectedDate.getDate() && 
-        currentDateIter.getMonth() === selectedDate.getMonth() && 
-        currentDateIter.getFullYear() === selectedDate.getFullYear()
+      const isSelected = (
+        (selectedStartDate && selectedEndDate) &&
+        currentDateIter.getDate() >= selectedStartDate.getDate() &&
+        currentDateIter.getDate() <= selectedEndDate.getDate() &&
+        currentDateIter.getMonth() === selectedStartDate.getMonth() &&
+        currentDateIter.getFullYear() === selectedStartDate.getFullYear()
+      )
 
       days.push(
         <div 
           key={i} 
           className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-100 rounded-full transition-colors
             ${isSelected ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}`}
-          onClick={() => setSelectedDate(currentDateIter)}
+          onClick={() => {
+            if (!selectedStartDate) {
+              setSelectedStartDate(currentDateIter)
+            } else if (!selectedEndDate) {
+              setSelectedEndDate(currentDateIter)
+              onSelectRange(selectedStartDate, currentDateIter)
+            } else {
+              setSelectedStartDate(currentDateIter)
+              setSelectedEndDate(null)
+            }
+          }}
         >
           {i}
         </div>
@@ -73,7 +87,7 @@ export function Calendar({ onSelectRange }: CalendarProps) {
         <Button
           variant="ghost"
           className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
-          onClick={() => onSelectRange("All time")}
+          onClick={() => onSelectRange(new Date(0), new Date())}
         >
           All time
         </Button>
@@ -113,7 +127,47 @@ export function Calendar({ onSelectRange }: CalendarProps) {
             <Button
               key={button.value}
               variant="outline"
-              onClick={() => onSelectRange(button.value)}
+              onClick={() => {
+                const today = new Date()
+                switch (button.value) {
+                  case "This Week":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay()),
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() + (6 - today.getDay()))
+                    )
+                    break
+                  case "Last Week":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() - 7),
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay() - 1)
+                    )
+                    break
+                  case "Last 7 Days":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6),
+                      today
+                    )
+                    break
+                  case "This Month":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), 1),
+                      new Date(today.getFullYear(), today.getMonth() + 1, 0)
+                    )
+                    break
+                  case "Last 14 Days":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - 13),
+                      today
+                    )
+                    break
+                  case "Last 30 Days":
+                    onSelectRange(
+                      new Date(today.getFullYear(), today.getMonth(), today.getDate() - 29),
+                      today
+                    )
+                    break
+                }
+              }}
               className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
             >
               {button.label}
