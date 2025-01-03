@@ -200,17 +200,20 @@ export function CallLogsView({ data }: CallLogsViewProps) {
     setFeedbacks(prev => ({ ...prev, [name]: feedback }));
   };
 
-  const handleSelectDateRange = (range: string) => {
-    setSelectedDateRange(range);
-    setSelectedTimeFrame(range); // Update to set both states
+  const handleSelectDateRange = (start: Date, end: Date) => {
+    // Format the date range to display
+    const formatDate = (date: Date) => {
+      return date.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric',
+        year: 'numeric'
+      });
+    };
+    
+    const dateRange = `${formatDate(start)} - ${formatDate(end)}`;
+    setSelectedDateRange(dateRange);
     setIsCalendarOpen(false);
   };
-
-  const handlePerformanceRangeChange = (value: number[]) => {
-  if (value.length === 2) {
-    setPerformanceRange([value[0], value[1]] as [number, number]);
-  }
-};
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -574,11 +577,17 @@ export function CallLogsView({ data }: CallLogsViewProps) {
         </div>
         </CardContent>
         <Dialog open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
-          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden">
             <DialogHeader>
               <DialogTitle className="sr-only">Select Date Range</DialogTitle>
             </DialogHeader>
-            <Calendar onSelectRange={handleSelectDateRange} />
+            <Calendar 
+  mode="range"
+  onSelect={(start, end) => {
+    if (start && end) {
+      handleSelectDateRange(start, end);
+    }
+  }}
+/>
           </DialogContent>
         </Dialog>
       </Card>
