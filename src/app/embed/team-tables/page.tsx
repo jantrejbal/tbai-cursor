@@ -33,7 +33,7 @@ export default function TeamTablesPage() {
    <div className="min-h-screen bg-white">
      <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
        <Suspense fallback={<LoadingFallback />}>
-         <div className="container mx-auto p-4 space-y-4">
+         <div className="container mx-auto p-0 space-y-0">
            <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
              <ActivityView />
            </ErrorBoundary>
