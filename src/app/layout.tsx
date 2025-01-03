@@ -1,3 +1,4 @@
+// src/app/layout.tsx
 import type { Metadata } from 'next'
 import { Montserrat, Inter } from 'next/font/google'
 import './globals.css'
@@ -29,9 +30,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${montserrat.variable} ${inter.variable}`} suppressHydrationWarning>
-      <body className={`font-sans bg-background min-h-screen antialiased ${inter.variable}`}>
+      <body className={`font-sans bg-background min-h-screen antialiased ${inter.variable} p-0 m-0`}>
         <Providers>
-          {children}
+          <div className="w-full max-w-full p-0 m-0">
+            {children}
+          </div>
           <Toaster
             position="top-center"
             toastOptions={{
