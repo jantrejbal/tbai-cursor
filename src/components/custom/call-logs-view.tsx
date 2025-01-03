@@ -326,7 +326,6 @@ const isDateInRange = (dateStr: string) => {
         Sort
       </Button>
     </DropdownMenuTrigger>
-// Replace this section in your CallLogsView component
 <DropdownMenuContent className="w-[300px]">
   <DropdownMenuRadioGroup value={sortOption} onValueChange={setSortOption}>
     <DropdownMenuRadioItem value="standard">Standard sorting</DropdownMenuRadioItem>
