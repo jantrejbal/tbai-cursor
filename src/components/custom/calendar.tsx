@@ -67,14 +67,16 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     { label: "Last 30 Days", value: "Last 30 Days" },
   ]
 
-  return (
-    <Card className="w-full max-w-2xl mx-auto">
-      <CardContent className="p-2">
-        <Button
-          variant="ghost"
-          className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
-          onClick={() => onSelectRange("All time")}
-        >
+// In your Calendar component, update the Card and CardContent styling:
+
+return (
+  <Card className="w-full max-w-2xl mx-auto p-0 m-0"> {/* Added p-0 m-0 */}
+    <CardContent className="p-2 pt-0"> {/* Changed from p-2 to pt-0 */}
+      <Button
+        variant="ghost"
+        className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
+        onClick={() => onSelectRange("All time")}
+      >
           All time
         </Button>
         <div className="grid grid-cols-2 gap-2">
