@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils"
 const Slider = React.forwardRef
   React.ElementRef<typeof SliderPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
->(({ className, value, ...props }, ref) => {
+>(({ className, ...props }, ref) => {
   return (
     <SliderPrimitive.Root
       ref={ref}
@@ -13,6 +13,7 @@ const Slider = React.forwardRef
         "relative flex w-full touch-none select-none items-center",
         className
       )}
+      defaultValue={[0, 100]} // Add default values here
       {...props}
     >
       <SliderPrimitive.Track className="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
