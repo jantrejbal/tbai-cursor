@@ -332,7 +332,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
                       <span className="text-sm font-medium">Overall Performance Range:</span>
                       <span className="text-sm font-medium text-[#5b06be]">{performanceRange[0]} - {performanceRange[1]}</span>
                     </div>
- <Slider
+                    <Slider
   min={0}
   max={100}
   step={1}
@@ -1013,6 +1013,7 @@ function PerformanceMetricsWidget({ log }: { log: CallLogData }) {
   )
 }
 
+
 function CallNotesWidget({ log }: { log: CallLogData }) {
   return (
     <div className="bg-white rounded-xl shadow-md p-4 h-full flex flex-col">
@@ -1086,44 +1087,22 @@ export function TranscriptView({ messages, className, agentName }: TranscriptVie
     return <p className="text-center text-gray-500">No transcript available.</p>;
   }
 
-  return (
-    <div className={cn("h-full flex flex-col min-h-0", className)}>
-      <h2 className="text-xl font-semibold mb-4">Call Transcript</h2>
-      <div className="flex-grow overflow-y-auto pr-4 space-y-4 min-h-0 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-[#F8F0FF] [&::-webkit-scrollbar-thumb]:bg-[#5b06be] [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-[#7016e0]">
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`flex flex-col gap-1.5 ${
-              message.isAgent 
-                ? 'bg-[#F8F0FF] border border-purple-100' 
-                : 'bg-[#FDF7F3] border border-orange-100'
-            } rounded-2xl p-3 min-w-0`}
-          >
-            <div className="flex items-center gap-3">
-              <Avatar className="h-8 w-8 border-2 border-[#5b06be] flex-shrink-0">
-                <AvatarImage 
-                  src={message.isAgent 
-                    ? "https://res.cloudinary.com/drkudvyog/image/upload/v1734565916/Profile_photo_duha_s_bilym_pozadim_cl4ukr.png"
-                    : "/placeholder.svg?height=32&width=32"
-                  } 
-                  alt={`${message.speaker}'s avatar`}
-                />
-                <AvatarFallback className="bg-gray-100">
-                  {message.avatar}
-                </AvatarFallback>
-              </Avatar>
-              <span className="font-semibold text-sm">
-                {message.isAgent ? agentName || message.speaker : message.speaker}
-              </span>
+  try {
+    return (
+      <div className={cn("h-full flex flex-col min-h-0", className)}>
+        <div className="w-full bg-white overflow-hidden">
+          <div className="p-4 border-b flex flex-row items-center justify-between">
+            <div className="text-2xl font-bold flex items-center gap-2 text-black flex-1">
+              {/* Your content */}
             </div>
-            <p className="text-sm leading-relaxed text-gray-700 pl-11 break-words">
-              {message.content}
-            </p>
           </div>
-        ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } catch (error) {
+    console.error("Error in TranscriptView:", error);
+    return <div>Error loading transcript.</div>;
+  }
 }
 
 <style jsx>{`
