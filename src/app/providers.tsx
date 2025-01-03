@@ -1,3 +1,4 @@
+// src/app/providers.tsx
 'use client'
 
 import { ThemeProvider } from "next-themes"
@@ -16,7 +17,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-      {children}
+      <div className="w-full max-w-full p-0 m-0">
+        {children}
+      </div>
     </ThemeProvider>
   )
 }
