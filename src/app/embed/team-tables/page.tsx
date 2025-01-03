@@ -31,10 +31,10 @@ export default function TeamTablesPage() {
   };
  
   return (
-    <div className="w-full max-w-full p-0 m-0">
+    <div className="w-full max-w-full p-0 m-0 bg-[#f2f3f8]"> {/* Added background color */}
       <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
         <Suspense fallback={<LoadingFallback />}>
-          <div className="w-full max-w-full p-0 m-0 flex flex-col gap-3"> {/* Added gap-6 for spacing */}
+          <div className="w-full max-w-full p-0 m-0 flex flex-col gap-3 bg-[#f2f3f8]"> {/* Added background color */}
             <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
               <ActivityView />
             </ErrorBoundary>
