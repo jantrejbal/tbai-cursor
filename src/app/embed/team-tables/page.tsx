@@ -24,28 +24,29 @@ function LoadingFallback() {
  );
 }
 
+// src/app/embed/team-tables/page.tsx
 export default function TeamTablesPage() {
- const handleError = (error: Error) => {
-   console.error('Error in TeamTables:', error);
- };
-
- return (
-   <div className="w-full max-w-full p-0 m-0"> {/* Updated container */}
-     <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
-       <Suspense fallback={<LoadingFallback />}>
-         <div className="w-full max-w-full p-0 m-0"> {/* Removed container, p-2, and space-y-2 classes */}
-           <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
-             <ActivityView />
-           </ErrorBoundary>
-           <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
-             <RatingsView />
-           </ErrorBoundary>
-           <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
-             <CallLogsView />
-           </ErrorBoundary>
-         </div>
-       </Suspense>
-     </ErrorBoundary>
-   </div>
- );
-}
+  const handleError = (error: Error) => {
+    console.error('Error in TeamTables:', error);
+  };
+ 
+  return (
+    <div className="w-full max-w-full p-0 m-0">
+      <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
+        <Suspense fallback={<LoadingFallback />}>
+          <div className="w-full max-w-full p-0 m-0 flex flex-col gap-6"> {/* Added gap-6 for spacing */}
+            <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
+              <ActivityView />
+            </ErrorBoundary>
+            <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
+              <RatingsView />
+            </ErrorBoundary>
+            <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
+              <CallLogsView />
+            </ErrorBoundary>
+          </div>
+        </Suspense>
+      </ErrorBoundary>
+    </div>
+  );
+ }
