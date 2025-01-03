@@ -115,8 +115,8 @@ export function Calendar({ onSelectRange }: CalendarProps) {
   };
 
   return (
-    <Card className="w-full max-w-2xl mx-auto p-0 m-0">
-      <CardContent className="p-2 relative">
+<div className="w-full relative">
+  <div className="p-2">
         <div className="absolute top-0 right-0 z-10">
           <Button
             variant="ghost"
