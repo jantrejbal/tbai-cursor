@@ -396,7 +396,7 @@ function ActivityView({ data }: ActivityViewProps) {
 
   return (
   <>
-    <Card className="w-full bg-white overflow-hidden mx-0"> // Add mx-0
+    <Card className="w-full bg-white rounded-3xl shadow-lg overflow-hidden shadow-md shadow-black/10 mx-0"> // Add mx-0
       <CardHeader className="flex flex-row items-center justify-between p-4 border-b">
         <div className="flex items-center gap-2">
           <Image
