@@ -574,7 +574,7 @@ export function CallLogsView({ data }: CallLogsViewProps) {
         </div>
         </CardContent>
         <Dialog open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
-          <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden">
+        <DialogContent className="sm:max-w-[600px] p-0 overflow-hidden border-none">
             <DialogHeader>
               <DialogTitle className="sr-only">Select Date Range</DialogTitle>
             </DialogHeader>
