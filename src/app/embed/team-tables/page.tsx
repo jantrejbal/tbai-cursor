@@ -30,10 +30,10 @@ export default function TeamTablesPage() {
  };
 
  return (
-   <div className="min-h-screen bg-white">
+   <div className="w-full max-w-full p-0 m-0"> {/* Updated container */}
      <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
        <Suspense fallback={<LoadingFallback />}>
-         <div className="container mx-auto p-2 space-y-2">
+         <div className="w-full max-w-full p-0 m-0"> {/* Removed container, p-2, and space-y-2 classes */}
            <ErrorBoundary FallbackComponent={ErrorFallback} onError={handleError}>
              <ActivityView />
            </ErrorBoundary>
