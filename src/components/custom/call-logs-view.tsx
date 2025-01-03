@@ -287,37 +287,40 @@ export function CallLogsView({ data }: CallLogsViewProps) {
             Team Call Logs
           </CardTitle>
           <div className="flex items-center gap-4">
-          <Button 
-  variant="outline" 
-  size="sm"
-  className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
-  onClick={() => setIsCalendarOpen(true)}
->
-  <Image
-    src="https://res.cloudinary.com/drkudvyog/image/upload/v1734437402/calendar_icon_2_efgdme.png"
-    alt="Calendar"
-    width={16}
-    height={16}
-    className="mr-2"
-  />
-  {dateRange.start && dateRange.end ? (
-    `${formatDateShort(dateRange.start.toISOString())} - ${formatDateShort(dateRange.end.toISOString())}`
-  ) : "All time"}
-</Button>
-                    variant="outline" 
-                    size="sm"
-                    className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
-                  >
-                    <Image
-                      src="https://res.cloudinary.com/drkudvyog/image/upload/v1734400792/Sort_icon_duha_tpvska.png"
-                      alt="Sort"
-                      width={16}
-                      height={16}
-                      className="mr-2"
-                    />
-                    Sort
-                  </Button>
-                </DropdownMenuTrigger>
+  <Button 
+    variant="outline" 
+    size="sm"
+    className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
+    onClick={() => setIsCalendarOpen(true)}
+  >
+    <Image
+      src="https://res.cloudinary.com/drkudvyog/image/upload/v1734437402/calendar_icon_2_efgdme.png"
+      alt="Calendar"
+      width={16}
+      height={16}
+      className="mr-2"
+    />
+    {dateRange.start && dateRange.end ? (
+      `${formatDateShort(dateRange.start.toISOString())} - ${formatDateShort(dateRange.end.toISOString())}`
+    ) : "All time"}
+  </Button>
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button 
+        variant="outline" 
+        size="sm"
+        className="rounded-full text-black hover:bg-gray-200 shadow-md shadow-black/10"
+      >
+        <Image
+          src="https://res.cloudinary.com/drkudvyog/image/upload/v1734400792/Sort_icon_duha_tpvska.png"
+          alt="Sort"
+          width={16}
+          height={16}
+          className="mr-2"
+        />
+        Sort
+      </Button>
+    </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-[300px]">
                   <DropdownMenuRadioGroup value={sortOption} onValueChange={setSortOption}>
                     <DropdownMenuRadioItem value="standard">Standard sorting</DropdownMenuRadioItem>
