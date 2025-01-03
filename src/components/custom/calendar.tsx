@@ -11,12 +11,13 @@ const monthNames = [
 ]
 
 interface CalendarProps {
-  onSelectRange: (range: string) => void
+  onSelectRange: (start: Date | null, end: Date | null) => void
 }
 
 export function Calendar({ onSelectRange }: CalendarProps) {
   const [currentDate, setCurrentDate] = React.useState(new Date())
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date())
+  const [startDate, setStartDate] = React.useState<Date | null>(null)
+  const [endDate, setEndDate] = React.useState<Date | null>(null)
 
   const goToPreviousMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1))
@@ -25,6 +26,32 @@ export function Calendar({ onSelectRange }: CalendarProps) {
   const goToNextMonth = () => {
     setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1))
   }
+
+  const handleDateClick = (date: Date) => {
+    if (!startDate || (startDate && endDate)) {
+      setStartDate(date);
+      setEndDate(null);
+    } else {
+      if (date < startDate) {
+        setEndDate(startDate);
+        setStartDate(date);
+      } else {
+        setEndDate(date);
+      }
+      onSelectRange(startDate, date);
+    }
+  };
+
+  const isDateInRange = (currentDate: Date) => {
+    if (!startDate || !endDate) return false;
+    return currentDate >= startDate && currentDate <= endDate;
+  };
+
+  const isStartOrEndDate = (date: Date) => {
+    if (!startDate) return false;
+    if (!endDate) return date.getTime() === startDate.getTime();
+    return date.getTime() === startDate.getTime() || date.getTime() === endDate.getTime();
+  };
 
   const renderCalendar = (year: number, month: number) => {
     const firstDay = new Date(year, month, 1)
@@ -38,17 +65,14 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDateIter = new Date(year, month, i)
-      const isSelected = selectedDate && 
-        currentDateIter.getDate() === selectedDate.getDate() && 
-        currentDateIter.getMonth() === selectedDate.getMonth() && 
-        currentDateIter.getFullYear() === selectedDate.getFullYear()
-
+      
       days.push(
         <div 
           key={i} 
           className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-100 rounded-full transition-colors
-            ${isSelected ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}`}
-          onClick={() => setSelectedDate(currentDateIter)}
+            ${isStartOrEndDate(currentDateIter) ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}
+            ${isDateInRange(currentDateIter) ? 'bg-[#5b06be]/20' : ''}`}
+          onClick={() => handleDateClick(currentDateIter)}
         >
           {i}
         </div>
@@ -67,16 +91,18 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     { label: "Last 30 Days", value: "Last 30 Days" },
   ]
 
-// In your Calendar component, update the Card and CardContent styling:
-
-return (
-  <Card className="w-full max-w-2xl mx-auto p-0 m-0"> {/* Added p-0 m-0 */}
-    <CardContent className="p-2 pt-0"> {/* Changed from p-2 to pt-0 */}
-      <Button
-        variant="ghost"
-        className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
-        onClick={() => onSelectRange("All time")}
-      >
+  return (
+    <Card className="w-full max-w-2xl mx-auto p-0 m-0">
+      <CardContent className="p-2 pt-0">
+        <Button
+          variant="ghost"
+          className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
+          onClick={() => {
+            setStartDate(null);
+            setEndDate(null);
+            onSelectRange(null, null);
+          }}
+        >
           All time
         </Button>
         <div className="grid grid-cols-2 gap-2">
@@ -115,7 +141,10 @@ return (
             <Button
               key={button.value}
               variant="outline"
-              onClick={() => onSelectRange(button.value)}
+              onClick={() => {
+                // TODO: Implement quick select date ranges
+                // onSelectRange(calculatedStart, calculatedEnd);
+              }}
               className="w-full hover:bg-[#5b06be] hover:text-white transition-colors"
             >
               {button.label}
