@@ -54,9 +54,16 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     return date.getTime() === startDate.getTime() || date.getTime() === endDate.getTime();
   };
 
-  const isInHoverRange = (date: Date) => {
-    if (!startDate || endDate || !hoverDate) return false;
-    return (date > startDate && date <= hoverDate) || (date < startDate && date >= hoverDate);
+  const isDateInHoverRange = (date: Date) => {
+    if (!startDate || !hoverDate || endDate) return false;
+    
+    const isAfterStart = date.getTime() >= startDate.getTime();
+    const isBeforeHover = date.getTime() <= hoverDate.getTime();
+    const isBeforeStart = date.getTime() <= startDate.getTime();
+    const isAfterHover = date.getTime() >= hoverDate.getTime();
+    
+    return (hoverDate >= startDate && isAfterStart && isBeforeHover) ||
+           (hoverDate < startDate && isBeforeStart && isAfterHover);
   };
 
   const renderCalendar = (year: number, month: number) => {
@@ -69,21 +76,25 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     for (let i = 0; i < startingDay; i++) {
       days.push(<div key={`empty-${i}`} className="text-center py-2"></div>)
     }
-    
+
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDateIter = new Date(year, month, i)
       const isBeforeToday = currentDateIter < new Date(new Date().setHours(0, 0, 0, 0))
+      const isActiveDate = isStartOrEndDate(currentDateIter)
+      const isHoveredRange = isDateInHoverRange(currentDateIter)
+      const isDateRange = isDateInRange(currentDateIter)
+      const isHovered = hoverDate?.getTime() === currentDateIter.getTime() && startDate && !endDate
       
       days.push(
         <div 
           key={i} 
-          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-[#5b06be]/10 rounded-full transition-colors
-            ${isStartOrEndDate(currentDateIter) ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]' : ''}
-            ${(isDateInRange(currentDateIter) || isInHoverRange(currentDateIter)) ? 'bg-[#5b06be]/20' : ''}
-            ${(hoverDate && hoverDate.getTime() === currentDateIter.getTime() && !endDate) ? 'bg-[#5b06be] text-white' : ''}
+          className={`text-center py-1.5 text-sm cursor-pointer transition-colors rounded-full
+            ${isActiveDate ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]' : 'hover:bg-[#5b06be]/10'}
+            ${(isDateRange || isHoveredRange) ? 'bg-[#5b06be]/20' : ''}
+            ${isHovered ? 'bg-[#5b06be] text-white' : ''}
             ${isBeforeToday ? 'text-gray-400' : ''}`}
           onClick={() => handleDateClick(currentDateIter)}
-          onMouseEnter={() => setHoverDate(currentDateIter)}
+          onMouseEnter={() => !endDate && setHoverDate(currentDateIter)}
           onMouseLeave={() => setHoverDate(null)}
         >
           {i}
