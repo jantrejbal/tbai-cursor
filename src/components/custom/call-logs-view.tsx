@@ -225,7 +225,12 @@ export function CallLogsView({ data }: CallLogsViewProps) {
       log.name.toLowerCase().includes(lowercasedQuery)
     );
   };
-
+// Add this function before filteredAndSortedData
+const isDateInRange = (dateStr: string) => {
+  if (!dateRange.start || !dateRange.end) return true;
+  const date = new Date(dateStr);
+  return date >= dateRange.start && date <= dateRange.end;
+};
   const filteredAndSortedData = useMemo(() => {
     let data = filterData(callLogsData, searchQuery);
     data = data.filter(log => 
