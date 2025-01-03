@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 
@@ -116,7 +116,21 @@ export function Calendar({ onSelectRange }: CalendarProps) {
 
   return (
     <Card className="w-full max-w-2xl mx-auto p-0 m-0">
-      <CardContent className="p-2 pt-0">
+      <CardContent className="p-2 relative">
+        <div className="absolute top-0 right-0 z-10">
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setStartDate(null);
+              setEndDate(null);
+              onSelectRange(null, null);
+            }}
+            className="h-8 w-8 p-0 hover:bg-transparent"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
         <Button
           variant="ghost"
           className="w-full text-base font-semibold mb-2 hover:bg-gray-100"
