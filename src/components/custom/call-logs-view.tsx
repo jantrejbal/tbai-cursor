@@ -476,7 +476,7 @@ const isDateInRange = (dateStr: string) => {
                                 />
                               </Button>
                             </DialogTrigger>
-                          <DialogContent className="max-w-[850px] !w-[850px] !h-[550px] p-6 overflow-hidden">
+                          <DialogContent className="max-w-[800px] !w-[800px] !h-[500px] p-6 overflow-hidden">
                           <DialogHeader className="pb-4">
                             <div className="flex items-center justify-between w-full py-2 border-b">
                               <div className="flex items-center gap-4">
