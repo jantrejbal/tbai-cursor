@@ -39,19 +39,15 @@ export function Calendar({ onSelectRange }: CalendarProps) {
     }
     for (let i = 1; i <= daysInMonth; i++) {
       const currentDateIter = new Date(year, month, i)
-      const isSelected = (
-        (selectedStartDate && selectedEndDate) &&
-        currentDateIter.getDate() >= selectedStartDate.getDate() &&
-        currentDateIter.getDate() <= selectedEndDate.getDate() &&
-        currentDateIter.getMonth() === selectedStartDate.getMonth() &&
-        currentDateIter.getFullYear() === selectedStartDate.getFullYear()
-      )
+      const isStartDate = selectedStartDate?.getDate() === currentDateIter.getDate() && selectedStartDate.getMonth() === currentDateIter.getMonth() && selectedStartDate.getFullYear() === currentDateIter.getFullYear()
+      const isEndDate = selectedEndDate?.getDate() === currentDateIter.getDate() && selectedEndDate.getMonth() === currentDateIter.getMonth() && selectedEndDate.getFullYear() === currentDateIter.getFullYear()
+      const isInRange = selectedStartDate && selectedEndDate && currentDateIter >= selectedStartDate && currentDateIter <= selectedEndDate
 
       days.push(
         <div 
           key={i} 
-          className={`text-center py-1.5 text-sm cursor-pointer hover:bg-gray-100 rounded-full transition-colors
-            ${isSelected ? 'bg-[#5b06be] text-white hover:bg-[#5b06be]/90' : ''}`}
+          className={`text-center py-1.5 text-sm cursor-pointer rounded-full transition-colors
+            ${isStartDate ? 'bg-[#5b06be] text-white' : isEndDate ? 'bg-[#5b06be] text-white' : isInRange ? 'bg-[#f0fdf4] text-[#5b06be]' : 'hover:bg-gray-100'}`}
           onClick={() => {
             if (!selectedStartDate) {
               setSelectedStartDate(currentDateIter)
